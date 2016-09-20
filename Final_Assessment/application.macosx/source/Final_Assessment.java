@@ -25,10 +25,10 @@ public class Final_Assessment extends PApplet {
  ------ HOLD DOWN ------
  - SPACEBAR = SPEED UP -
  - UP = SIZE CHANGE ----
+ -----------------------
  */
 
 // import sound library
-
 
 
 // sound variable called musicFor18
@@ -38,16 +38,23 @@ SoundFile musicFor18;
 String[] firstWord = {"Trailing", "Spiraling", "Complete", "Capricious", "Didactic", "Recurring", "Nature's", "Iterating", "Endless", "Ceaseless", "Xenomorphic", "Algorithmic", "Coded", "Tornadic", "Harmonic"}; 
 String[] secondWord = {"Void", "Chasm", "Aperture", "Rapture", "Harmony", "Dandeline", "Fissure", "Echo", "Galaxy", "Automata", "Motion"};
 
-// establishe string called title
+// establishes strings called title,instructions, up, spacebar, m, enter 
 String title;
+String instructions = "INSTRUCTIONS";
+String up = "UP ARROW: Speed up rate of size change";
+String spaceBar = "SPACEBAR: Speed up iteration period";
+String m = "M: Mute Audio";
+String enter = "ENTER: Generate new pattern";
+String pressKey = "PRESS ANY KEY TO CONTINUE";
 
-// boolean (True or False) called turback
+// boolean (True or False) called turback and dispInstructions
 boolean turnback;
+boolean dispInstructions = true;
 
 // floats (decimal point values)
 float sides;
 float maxRadius = 300 * sqrt(2);
-float offset, angle, radius, prevAngle, prevRadius;
+float offset, angle, radius, prevAngle, prevRadius, amp;
 // bulk creation of variables
 float size = 0;
 float c = 0.01f;
@@ -85,7 +92,7 @@ int background, overLay, line, point, textColour;
 
 // this function is called first
 public void setup() {
-  // set size of window (1440,1440) and render (processing 3D)
+  // set size of window (1200,1200) and render (processing 3D)
   
   // call the randomise function
   randomise();
@@ -99,17 +106,26 @@ public void draw() {
   background(background);
   // zero point to centre screen (minus 50 of y-axis)
   translate(width / 2, height / 2 - 50);
-  // call the draw spiral function
-  drawSpiral();
-  // randomising whether or not to draw an overlaying shape
-  if (chanceShape == 0) {
-    // if chanceShape equals zero then call the shapeLayOver function
-    shapeLayOver();
+  if (dispInstructions  == true) {
+    displayInst();
+    if (mousePressed || keyPressed) {
+
+      dispInstructions = false;
+    }
+  } else {
+
+    // call the draw spiral function
+    drawSpiral();
+    // randomising whether or not to draw an overlaying shape
+    if (chanceShape == 0) {
+      // if chanceShape equals zero then call the shapeLayOver function
+      shapeLayOver();
+    }
+    // call textDisp function
+    textDisp();
+    // call the the sizeChange frame
+    sizeChange();
   }
-  // call textDisp function
-  textDisp();
-  // call the the sizeChange frame
-  sizeChange();
 }
 
 /* function called shapeLayOver that places a shape with 
@@ -167,9 +183,17 @@ public void keyPressed() {
     // for the keyCode value of ENTER scall the randomise function
     randomise();
     break;
+  case 'M':
+    if (amp == 0) {
+      amp = 1;
+      musicFor18.amp(amp);
+    } else if (amp == 1) {
+      amp = 0;
+      musicFor18.amp(amp);
+    }
   }
 }
-// much like the keyPresseed, only called when a key is released
+// much like the keyPressed, only called when a key is released
 public void keyReleased() {
 
   switch(keyCode) {
@@ -183,6 +207,7 @@ public void keyReleased() {
     break;
   }
 }
+
 
 /* function called sizeChange that oscillates between 0 and 100
  a fairly rudimentary/harsh way to do so, but it works so why care :P
@@ -230,8 +255,8 @@ public void randomise() {
     // otherwise set the textColour to the white in the array (indexed 16)
     textColour = colour[16];
   }
-  
-  // print("----",background, line, point, "----"); <-- here to debug and check the randomised variables 
+
+  // print("----",background, line, point, "----"); <-- here to debug and check the randomised variables
 }
 
 // function called drawSpiral responsible for the bulk of the visuals, it draws a spiral using a set number of sides and number of turns
@@ -286,11 +311,28 @@ public void drawSpiral() {
 public void playSound() {
   // initiate the SoundFile variable called musicFor18 with a new SoundFile for this sketch from within the data folder with the name steveReichNGGYU.mp3
   musicFor18 = new SoundFile(this, "steveReichNGGYU.mp3");
-  print("There is a surprise at 56 min");
+  // print("There is a surprise at 56 min");
   // once the audio finishes, play again
   musicFor18.loop();
 }
-  public void settings() {  size(1440, 1440, P3D); }
+
+// function that displays the beginning instruction screen
+public void displayInst() {
+  noStroke();
+  textSize(20);
+  textAlign(CENTER, BOTTOM);
+  text(instructions, 0, - 100, 5);
+  rectMode(CENTER);
+  rect(0, -100, 150, 2);
+  textSize(14);
+  textAlign(CENTER, BOTTOM);
+  text(enter, 0, -50, 5);
+  text(spaceBar, 0, -20, 5);
+  text(up, 0, 10, 5);
+  text(m, 0, 40, 5);
+  text(pressKey, 0, 100, 5);
+}
+  public void settings() {  size(1200, 1200, P3D); }
   static public void main(String[] passedArgs) {
     String[] appletArgs = new String[] { "Final_Assessment" };
     if (passedArgs != null) {
