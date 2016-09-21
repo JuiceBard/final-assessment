@@ -20,7 +20,7 @@ public class Final_Assessment extends PApplet {
  -----------------------
  ---- Jasper Dorman ----
  ------- 07/2016 -------
- ---- Version 1.4.1-----
+ ---- Version 1.4.2-----
  -----------------------
  */
 
@@ -315,6 +315,7 @@ public void playSound() {
 // function that displays the beginning instruction screen
 public void displayInst() {
   noStroke();
+  fill(textColour);
   textSize(20);
   textAlign(CENTER, BOTTOM);
   text(instructions, 0, - 100, 5);

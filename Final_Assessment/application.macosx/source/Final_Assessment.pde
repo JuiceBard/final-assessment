@@ -2,7 +2,7 @@
  -----------------------
  ---- Jasper Dorman ----
  ------- 07/2016 -------
- ---- Version 1.4.1-----
+ ---- Version 1.4.2-----
  -----------------------
  */
 
@@ -297,6 +297,7 @@ void playSound() {
 // function that displays the beginning instruction screen
 void displayInst() {
   noStroke();
+  fill(textColour);
   textSize(20);
   textAlign(CENTER, BOTTOM);
   text(instructions, 0, - 100, 5);
