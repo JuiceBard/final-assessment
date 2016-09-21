@@ -4,10 +4,6 @@
  ------- 07/2016 -------
  ---- Version 1.4.1-----
  -----------------------
- ------ HOLD DOWN ------
- - SPACEBAR = SPEED UP -
- - UP = SIZE CHANGE ----
- -----------------------
  */
 
 // import sound library
@@ -220,7 +216,7 @@ void randomise() {
   line = colour[int(random(colour.length))];
   point = colour[int(random(colour.length))];
   numTurns = int(random(30, 100));
-  sides = random(2, 300);
+  sides = random(2, 250);
   chanceShape = int(random(3));
   stroke = int(random(0, 4));
   drawShape = int(random(4));

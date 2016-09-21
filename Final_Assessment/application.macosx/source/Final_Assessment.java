@@ -22,10 +22,6 @@ public class Final_Assessment extends PApplet {
  ------- 07/2016 -------
  ---- Version 1.4.1-----
  -----------------------
- ------ HOLD DOWN ------
- - SPACEBAR = SPEED UP -
- - UP = SIZE CHANGE ----
- -----------------------
  */
 
 // import sound library
@@ -238,7 +234,7 @@ public void randomise() {
   line = colour[PApplet.parseInt(random(colour.length))];
   point = colour[PApplet.parseInt(random(colour.length))];
   numTurns = PApplet.parseInt(random(30, 100));
-  sides = random(2, 300);
+  sides = random(2, 250);
   chanceShape = PApplet.parseInt(random(3));
   stroke = PApplet.parseInt(random(0, 4));
   drawShape = PApplet.parseInt(random(4));

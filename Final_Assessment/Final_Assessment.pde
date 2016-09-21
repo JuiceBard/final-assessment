@@ -216,7 +216,7 @@ void randomise() {
   line = colour[int(random(colour.length))];
   point = colour[int(random(colour.length))];
   numTurns = int(random(30, 100));
-  sides = random(2, 300);
+  sides = random(2, 250);
   chanceShape = int(random(3));
   stroke = int(random(0, 4));
   drawShape = int(random(4));
