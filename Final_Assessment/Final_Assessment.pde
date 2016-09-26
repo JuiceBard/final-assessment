@@ -72,6 +72,8 @@ color background, overLay, line, point, textColour;
 void setup() {
   // set size of window (1200,1200) and render (processing 3D)
   size(1200, 1200, P3D);
+  // make window size adjustable
+  frame.setResizable(true);
   // call the randomise function
   randomise();
   // call the loading and playing sound function
@@ -133,8 +135,8 @@ void textDisp() {
   textMode(SHAPE);
   // align the text centre at the centre and at the bottom of the boundary box
   textAlign(CENTER, BOTTOM);
-  // draw the text from the string called title at 0 , 570 from the origin and 5 pixels infront of other elements on the z-axis
-  text(title, 0, 570, 5);
+  // draw the text from the string called title at 0 , with height/2 from the origin and 5 pixels infront of other elements on the z-axis
+  text(title, 0, height/2, 5);
 }
 
 // function called randomTitle that returns a string  
